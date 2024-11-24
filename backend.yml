@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: akash879/techdome-backend:v1
+        env:
+        - name: MONGO_URI
+          value: mongodb://admin:password@mongo:27017/techdome
+        ports:
+        - containerPort: 5000
